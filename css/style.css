@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box; }
+
+body,
+ul {
+  margin: 0;
+  padding: 0;
+  font-family: "Varela Round", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.container {
+  width: 80%;
+  margin: 50px auto; }
+
+.header h1 {
+  font-size: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px; }
+
+.search-container input {
+  display: block;
+  padding: 6px 10px;
+  border: 0.8px solid #cecaca;
+  border-radius: 5px 0 0 5px;
+  font-size: 17px;
+  margin-left: auto; }
+
+.search-container form {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  display: flex; }
+
+.search-container button {
+  padding: 6px 10px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  margin-right: auto; }
+
+.employee-details {
+  padding: 10px;
+  border: 0.8px solid #cecaca;
+  border-radius: 5px;
+  margin: 1.5em auto; }
+
+ul li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.image {
+  display: block;
+  border-radius: 50%;
+  margin: 0 auto; }
+
+.employee-details {
+  height: 250px;
+  width: 300px; }
+
+.employee-name,
+.employee-email,
+.employee-location {
+  text-align: center;
+  line-height: 1.5em; }
+
+.employee-name,
+.employee-location {
+  text-transform: capitalize; }
+
+.employee-name {
+  font-size: 1.5em;
+  margin-top: 0.5em; }
+
+.ui-dialog-titlebar,
+.ui-dialog-titlebar-close {
+  background-color: #ffffff;
+  border: none; }
+
+/* ================================= 
+  Media Queries
+==================================== */
+@media (min-width: 769px) {
+  #employees {
+    display: flex;
+    flex-wrap: wrap; }
+
+  .employee-details {
+    display: flex; }
+
+  .employee-name,
+  .employee-email,
+  .employee-location {
+    text-align: left; }
+
+  .employee-email,
+  .employee-location {
+    font-size: 0.8em; }
+
+  .employee-details {
+    height: 150px;
+    width: 380px; }
+
+  .employee-details ul {
+    margin-top: 10px; }
+
+  .image {
+    margin-right: 10px;
+    margin-left: 0; } }
+@media (min-width: 1025px) {
+  .header {
+    display: flex;
+    width: 80%;
+    margin-left: 2em; } }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4); }
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  text-align: center; }
+
+/* The Close Button */
+.modal-content img {
+  border-radius: 50%; }
+
+/*# sourceMappingURL=style.css.map */
