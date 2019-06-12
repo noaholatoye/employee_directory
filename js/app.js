@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	var EmployeeHTML = "";
+	var modalButton = "";
 	$.getJSON(
 		"https://randomuser.me/api/", //API URL//
 
@@ -8,8 +10,6 @@ $(document).ready(function() {
 		},
 
 		function displayEmployees(data) {
-			var EmployeeHTML = "";
-
 			$.each(data.results, function(i, employee) {
 				//BUILD HTML TO DISPLAY PHOTOS IN PAGE//
 				EmployeeHTML +=
@@ -31,6 +31,32 @@ $(document).ready(function() {
 
 				$("#employees").html(EmployeeHTML);
 
+				// MODAL BUTTON
+				$(".detailsButton").click(function() {
+					if (displayModal(results) === i) {
+						$("#employeeModal").dialog("Hey");
+					}
+				});
+
+				// SEARCH FOR EMPLOYEE
+				$("#search").on("keyup", function() {
+					var value = $(this)
+						.val()
+						.toLowerCase();
+					$("#employees .employee-details").filter(function() {
+						$(this).toggle(
+							$(this)
+								.text()
+								.toLowerCase()
+								.indexOf(value) > -1
+						);
+					});
+				});
+			});
+		},
+		// CREATE MODAL
+		function displayModal(data) {
+			$.each(data, function(i, employee) {
 				//BUILD THE MODAL
 				EmployeeHTML += '<div id="employeeModal" class="modal">';
 				EmployeeHTML += '<div class="modal-content">' + "<p>";
@@ -89,30 +115,7 @@ $(document).ready(function() {
 					"</span>";
 
 				EmployeeHTML += "</p></div></div></div></div>";
-				$(".detailsButton").click(e =>
-					$("#employeeModal").dialog({
-						hide: { effect: "fade", duration: 1000 },
-						show: { effect: "fade", duration: 500 }
-					})
-				);
-
-				// SEARCH FOR EMPLOYEE
-				$("#search").on("keyup", function() {
-					var value = $(this)
-						.val()
-						.toLowerCase();
-					$("#employees .employee-details").filter(function() {
-						$(this).toggle(
-							$(this)
-								.text()
-								.toLowerCase()
-								.indexOf(value) > -1
-						);
-					});
-				});
 			});
-
-			// Get the modal
 		}
 	); //GET JSON DATA END
 });
