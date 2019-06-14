@@ -31,13 +31,6 @@ $(document).ready(function() {
 
 				$("#employees").html(EmployeeHTML);
 
-				// MODAL BUTTON
-				$(".detailsButton").click(function() {
-					if (displayModal(results) === i) {
-						$("#employeeModal").dialog("Hey");
-					}
-				});
-
 				// SEARCH FOR EMPLOYEE
 				$("#search").on("keyup", function() {
 					var value = $(this)
@@ -53,69 +46,61 @@ $(document).ready(function() {
 					});
 				});
 			});
-		},
-		// CREATE MODAL
-		function displayModal(data) {
-			$.each(data, function(i, employee) {
-				//BUILD THE MODAL
-				EmployeeHTML += '<div id="employeeModal" class="modal">';
-				EmployeeHTML += '<div class="modal-content">' + "<p>";
-				//BUILD HTML TO DISPLAY PICTURES IN PAGE//
-				EmployeeHTML +=
-					'<img class="profile-pic" src="' +
-					employee.picture.large +
-					'">' +
-					"<br>"; //BUILD HTML TO DISPLAY FULL NAME IN PAGE//
-				EmployeeHTML +=
-					'<span class="employee-name-modal"><b>Name:</b> ' +
-					employee.name.first +
-					" " +
-					employee.name.last +
-					"</span>" +
-					"<br>";
-
-				//BUILD HTML TO DISPLAY USERNAMES IN PAGE//
-				EmployeeHTML +=
-					'<span class="employee-username-modal"><b>Username:</b> ' +
-					employee.login.username +
-					"<br>" +
-					"</span>";
-				//BUILD HTML TO DISPLAY EMAILS IN PAGE//
-				EmployeeHTML +=
-					'<span class="employee-email-modal"><b>E-mail:</b> ' +
-					employee.email +
-					"<br>" +
-					"</span>";
-
-				//BUILD HTML TO DISPLAY CELLPHONES IN PAGE//
-				EmployeeHTML +=
-					'<span class="employee-cellphone-modal"><b>Phone:</b> +' +
-					employee.cell +
-					"<br>" +
-					"</span>";
-
-				//BUILD HTML TO DISPLAY DETAILED ADDRESS IN PAGE//
-				EmployeeHTML +=
-					'<span class="employee-address-modal"><b>Address:</b> ' +
-					employee.location.street +
-					"<br>" +
-					employee.location.city +
-					" " +
-					employee.location.state +
-					" " +
-					employee.location.postcode +
-					"<br>" +
-					"</span>";
-
-				//BUILD HTML TO DISPLAY DOB IN PAGE//
-				EmployeeHTML +=
-					'<span class="employee-dob-modal"><b>Birthday:</b> ' +
-					employee.dob +
-					"<br>" +
-					"</span>";
-
-				EmployeeHTML += "</p></div></div></div></div>";
+			// MODAL BUTTON
+			$(".detailsButton").each(function(index) {
+				$(this).on("click", function() {
+					displayModal(data.results[index]);
+				});
 			});
 		}
 	); //GET JSON DATA END
+	// CREATE MODAL
+	function displayModal(employee) {
+		var ModalHTML = "";
+		//BUILD THE MODAL
+		ModalHTML += '<div id="employeeModal" class="modal">';
+		ModalHTML +=
+			'<div class="modal-content"> <span id="close-btn"><i class="fa fa-times"></i></span>';
+		//BUILD HTML TO DISPLAY PICTURES IN PAGE//
+		ModalHTML +=
+			'<img class="profile-pic" src="' + employee.picture.large + '">' + "<br>"; //BUILD HTML TO DISPLAY FULL NAME IN PAGE//
+		ModalHTML +=
+			'<ul><li class="employee-name">' +
+			employee.name.first +
+			" " +
+			employee.name.last +
+			"</li>";
+		ModalHTML += '<li class="employee-email">' + employee.email + "</li>";
+		ModalHTML +=
+			'<li class="employee-location">' +
+			employee.location.city +
+			'</li><span class="bottom-divider"></span>';
+		ModalHTML += '<li class="employee-email">' + employee.phone + "</li>";
+		ModalHTML +=
+			'<li class="employee-email">' + employee.location.street + "</li>";
+		ModalHTML +=
+			'<li class="employee-email"> Birthday:' + employee.dob.date + "</li>";
+		ModalHTML +=
+			'<span class="slide-modal"><i class="fa fa-arrow-circle-left"></i><i class="fa fa-arrow-circle-right"></i></span>';
+
+		ModalHTML += "</ul></div></div>";
+
+		$("#dialog-message").html(ModalHTML);
+		$("#employeeModal").show();
+
+		// CLOSE BUTTON
+		$("#close-btn").on("click", function() {
+			$("#employeeModal").hide();
+		});
+		// NAVIGATE EMPLOYEES
+		var modalSlides = "";
+		$(".fa-arrow-circle-right").click(function() {
+			modalSlides = $(".modal");
+			modalSlides.next().show();
+		});
+		$(".fa-arrow-circle-left").click(function() {
+			modalSlides = $(".modal");
+			modalSlides.preview().show();
+		});
+	} // END CREATE MODAL
 });

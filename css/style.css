@@ -123,16 +123,44 @@ ul li {
   width: 100%;
   height: 100%;
   overflow: auto;
+  margin: auto;
   background-color: black;
   background-color: rgba(0, 0, 0, 0.4); }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
+  padding-top: 50px;
+  text-align: center;
+  width: 24em;
+  height: 30em;
+  margin: 30px auto 0 auto;
+  position: relative; }
+
+.modal-content ul li {
   text-align: center; }
 
 /* The Close Button */
 .modal-content img {
   border-radius: 50%; }
+
+#close-btn {
+  position: absolute;
+  z-index: 2;
+  top: 15px;
+  right: 15px; }
+
+.modal-content .bottom-divider {
+  border-bottom: 1px solid #b9b7b7;
+  padding: 15px 15px;
+  width: 70%;
+  display: block;
+  margin: 0 auto 15px auto; }
+
+.slide-modal {
+  display: block;
+  margin-top: 20px; }
+  .slide-modal .fa-arrow-circle-left {
+    margin-right: 10px; }
 
 /*# sourceMappingURL=style.css.map */
