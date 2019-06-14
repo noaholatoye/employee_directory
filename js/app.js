@@ -49,13 +49,13 @@ $(document).ready(function() {
 			// MODAL BUTTON
 			$(".detailsButton").each(function(index) {
 				$(this).on("click", function() {
-					displayModal(data.results[index]);
+					displayModal(data.results, data.results[index], index);
 				});
 			});
 		}
 	); //GET JSON DATA END
 	// CREATE MODAL
-	function displayModal(employee) {
+	function displayModal(employees, employee, index) {
 		var ModalHTML = "";
 		//BUILD THE MODAL
 		ModalHTML += '<div id="employeeModal" class="modal">';
@@ -93,14 +93,17 @@ $(document).ready(function() {
 			$("#employeeModal").hide();
 		});
 		// NAVIGATE EMPLOYEES
-		var modalSlides = "";
+		/* MODAL NAVIGATION */
+		const len = employees.length - 1;
 		$(".fa-arrow-circle-right").click(function() {
-			modalSlides = $(".modal");
-			modalSlides.next().show();
+			return index > 0
+				? displayModal(employees, employees[index + 1], index - 1)
+				: displayModal(employees, employees[len], len);
 		});
 		$(".fa-arrow-circle-left").click(function() {
-			modalSlides = $(".modal");
-			modalSlides.preview().show();
+			return index < len
+				? displayModal(employees, employees[index - 1], index + 1)
+				: displayModal(employees, employees[0], 0);
 		});
 	} // END CREATE MODAL
 });
