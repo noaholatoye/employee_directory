@@ -74,15 +74,17 @@ ul li {
   font-size: 1.5em;
   margin-top: 0.5em; }
 
-.ui-dialog-titlebar,
-.ui-dialog-titlebar-close {
-  background-color: #ffffff;
-  border: none; }
-
 /* ================================= 
   Media Queries
 ==================================== */
 @media (min-width: 769px) {
+  .employee-details:hover {
+    background: white;
+    border: 1px solid rgba(2, 78, 116, 0.8);
+    box-shadow: 0px 0px 15px 0px rgba(102, 102, 102, 0.3);
+    transition: 0.3s ease-in-out;
+    cursor: pointer; }
+
   #employees {
     display: flex;
     flex-wrap: wrap; }
@@ -162,6 +164,11 @@ ul li {
   margin-top: 20px; }
   .slide-modal .fa-arrow-circle-left {
     margin-right: 10px; }
+
+.fa-times,
+.fa-arrow-circle-right:hover,
+.fa-arrow-circle-left:hover {
+  cursor: pointer; }
 
 .fa-times:hover {
   color: brown; }
