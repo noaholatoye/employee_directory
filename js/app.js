@@ -95,15 +95,15 @@ $(document).ready(function() {
 		// NAVIGATE EMPLOYEES
 		/* MODAL NAVIGATION */
 		const len = employees.length - 1;
-		$(".fa-arrow-circle-right").click(function() {
-			return index > 0
-				? displayModal(employees, employees[index + 1], index - 1)
-				: displayModal(employees, employees[len], len);
-		});
-		$(".fa-arrow-circle-left").click(function() {
+		$(".fa-arrow-circle-right").on("click", function() {
 			return index < len
-				? displayModal(employees, employees[index - 1], index + 1)
+				? displayModal(employees, employees[index + 1], index + 1)
 				: displayModal(employees, employees[0], 0);
+		});
+		$(".fa-arrow-circle-left").on("click", function() {
+			return index > 0
+				? displayModal(employees, employees[index - 1], index - 1)
+				: displayModal(employees, employees[len], len);
 		});
 	} // END CREATE MODAL
 });
